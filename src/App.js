@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [text, setText] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleInputChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    setMessage(text);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Is State Clear Now?</h1>
+      <input type="text" value={text} onChange={handleInputChange} />
+      <button onClick={handleSubmit}>Click Me</button>
+      {message && <h3 className="message">{message}</h3>}
     </div>
   );
 }
